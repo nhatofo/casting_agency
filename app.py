@@ -30,15 +30,6 @@ def format_datetime(value, format='medium'):
     app.jinja_env.filters['datetime'] = format_datetime
 
 
-'''
-MOVIES
-'''
-
-'''
-@:
-Create an endpoint to handle GET requests
-for all available movies.
-'''
 @app.route("/movies", methods=['GET'])
 # @cross_origin()
 def get_movies():
@@ -58,13 +49,6 @@ def get_movies():
     })
 
 
-'''
-@:
-Create an endpoint to DELETE movie using a movie ID.
-
-'''
-
-
 @app.route("/movies/<int:movie_id>", methods=['DELETE'])
 @requires_auth('delete:movies')
 # @cross_origin()
@@ -80,14 +64,6 @@ def delete_movie(payload, movie_id):
         })
     except BaseException:
         abort(404)
-
-
-'''
-@:
-Create an endpoint to POST a new movie,
-which will require its title and release date.
-
-'''
 
 
 @app.route("/movies", methods=['POST'])
@@ -112,9 +88,6 @@ def add_movie(payload):
         abort(422)
 
 
-'''
-edit existing movie
-'''
 @app.route("/movies/<int:movie_id>", methods=['PATCH'])
 @requires_auth('patch:movies')
 # @cross_origin()
@@ -142,15 +115,6 @@ def edit_movie(payload, movie_id):
         abort(422)
 
 
-'''
-ACTORS
-'''
-
-'''
-@:
-Create an endpoint to handle GET requests
-for all available actors.
-'''
 @app.route("/actors", methods=['GET'])
 # @cross_origin()
 def get_actors():
@@ -170,13 +134,6 @@ def get_actors():
     })
 
 
-'''
-@:
-Create an endpoint to DELETE actor using a actor ID.
-
-'''
-
-
 @app.route("/actors/<int:actor_id>", methods=['DELETE'])
 @requires_auth('delete:actors')
 # @cross_origin()
@@ -192,14 +149,6 @@ def delete_actor(payload, actor_id):
         })
     except BaseException:
         abort(404)
-
-
-'''
-@:
-Create an endpoint to POST a new actor,
-which will require its name, age and gender.
-
-'''
 
 
 @app.route("/actors", methods=['POST'])
@@ -224,10 +173,6 @@ def add_actor(payload):
     except AuthError:
         abort(422)
 
-
-'''
-edit existing actor
-'''
 @app.route("/actors/<int:actor_id>", methods=['PATCH'])
 @requires_auth('patch:actors')
 # @cross_origin()
@@ -257,10 +202,6 @@ def edit_actor(payload, actor_id):
         abort(422)
 
 
-'''
-Error handlers for all expected errors
-
-'''
 @app.errorhandler(500)
 def server_error(error):
     return jsonify({

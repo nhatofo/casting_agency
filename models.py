@@ -4,13 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_migrate import Migrate
 
-database_path = "postgresql://postgres:22ztWLoXg@localhost:5432/casting_agency"
+database_path = "postgres://pxwduiqyoswvph:b1bcb67d4595e3f7172d829ca6fbdd4420a7147c89ec5c287b23afc110b09231@ec2-34-204-22-76.compute-1.amazonaws.com:5432/dacae3ho9cob5f"
 db = SQLAlchemy()
-
-'''
-setup_db(app)
-    binds a flask application and a SQLAlchemy service
-'''
 
 
 def setup_db(app, database_path=database_path):
@@ -21,13 +16,6 @@ def setup_db(app, database_path=database_path):
     db.create_all()
     migrate = Migrate(app, db) 
     
-
-
-'''
-Movie
-
-'''
-
 
 class Movie(db.Model):
     __tablename__ = 'movies'
@@ -57,12 +45,6 @@ class Movie(db.Model):
             'title': self.title,
             'releaseDate': self.releaseDate
         }
-
-
-'''
-Actor
-
-'''
 
 
 class Actor(db.Model):
