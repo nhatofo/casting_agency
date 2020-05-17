@@ -9,10 +9,8 @@ from flask_cors import CORS, cross_origin
 
 
 class CastingAgency(unittest.TestCase):
-    """This class represents the casting agency test case"""
 
     def setUp(self):
-        """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
         self.database_name = "casting_test"
@@ -30,7 +28,6 @@ class CastingAgency(unittest.TestCase):
             'gender': 'M'
         }
 
-        # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
             self.db.init_app(self.app)
@@ -38,7 +35,6 @@ class CastingAgency(unittest.TestCase):
             self.db.create_all()
 
     def tearDown(self):
-        """Executed after reach test"""
         pass
 
     def test_post_movie(self):
@@ -99,7 +95,5 @@ class CastingAgency(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
 
-
-# Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
