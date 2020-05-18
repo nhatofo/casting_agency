@@ -2,7 +2,7 @@
 
 Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies.
 
-Hosted on heroku. [Link](https://udacity-casting-agency.herokuapp.com/).
+Hosted on heroku. [Link](https://teocastingagency.herokuapp.com/).
 
 ## Motivation
 
@@ -37,8 +37,6 @@ pass: Pass1232
 email: producer@fsnd.com
 password: Pass1233
 ###
-
-The Auth0 domain and api audience can be found in `setup.sh`.
 
 ## Api Endpoints
 
