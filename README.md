@@ -1,8 +1,8 @@
-# Casting Agency
+# Casting Agency Captone Project
 
 Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies.
 
-Hosted on heroku. [Link](https://teocastingagency.herokuapp.com/).
+Hosted on heroku. [Link](https://udacity-casting-agency.herokuapp.com/).
 
 ## Motivation
 
@@ -15,7 +15,7 @@ They can be installed by running `pip3 install -r requirements.txt`.
 
 ## Authentication
 
-The API has three registered users with diferent roles:
+The API has three registered users:
 
 1. Casting Assistant
 
@@ -38,11 +38,13 @@ email: producer@fsnd.com
 password: Pass1233
 ###
 
+The Auth0 domain and api audience can be found in `setup.sh`.
+
 ## Api Endpoints
 
 ### `GET /movies`
 
-Gets all movies from the database.
+Gets all movies from the db.
 
 Response:
 
@@ -68,7 +70,7 @@ Response:
 
 ### `POST /movies`
 
-Adds a new movie to the database.
+Adds a new movie to the db.
 
 Data:
 
@@ -90,7 +92,7 @@ Response:
 
 ### `PATCH /movies/<int:id>`
 
-Edit data on a movie in the database.
+Edit data on a movie in the db.
 
 Data:
 
@@ -130,7 +132,7 @@ Response:
 
 ### `GET /actors`
 
-Gets all actors from the database.
+Gets all actors from the db.
 
 Response:
 
@@ -156,7 +158,7 @@ Response:
 
 ### `POST /actors`
 
-Adds a new actor to the database.
+Adds a new actor to the db.
 
 Data:
 
@@ -178,7 +180,7 @@ Response:
 
 ### `PATCH /actors/<int:id>`
 
-Edit data on a actor in the database.
+Edit data on a actor in the db.
 
 Data:
 
@@ -205,7 +207,7 @@ Response:
 
 ### `DELETE /actors/<int:id>`
 
-Delete a actor from the database.
+Delete a actor from the db.
 
 Response:
 
@@ -216,41 +218,6 @@ Response:
 }
 ```
 
-### Prerequisites
+## Tests
 
-postgress database instance and python 3.x installed on doker  or linux Ubuntu 14.04 or above with all above requirements librires installed.
-
-### Installing
-Use the etl.ipynd notebook to develop the ETL process for each of tables before completing running the  etl.py file to load the whole datasets.
-
-Each time you run the cells above, remember to restart this notebook to close the connection to your database. Otherwise, you won't be able to run your code in create_tables.py, etl.py, or etl.ipynb files since you can't make multiple connections to the same database (in this case, sparkifydb).
-
-### Running the tests
-To run tests,just execute the python file  test_app.py.(python3 test_app.py)
-
-
-
-
-### Built With
-
-* [Postgress](https://www.postgresql.org/) - Database Management System
-* [Python](https://www.python.org/) - Scripting Language
-* [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Web development framework
-
-### Contributing
-* **Teofilo Carlos Chichume ** 
-
-
-### Authors
-
-* **Teofilo Carlos Chichume** - *Initial work* - [nhatofo](https://github.com/nhatofo/udacity_de.git)
-
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-### Acknowledgments
-
-* Inspiration [yuralim](https://github.com/yuralim/udacity_dend_project1),
-[PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+To run the tests, run `python3 tests.py`.

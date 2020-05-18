@@ -37,7 +37,7 @@ class AgencyTestCase(unittest.TestCase):
             'age' : 41
         } 
 
-        res = self.client().post('/actors', json = json_create_actor, headers = casting_director_auth_header)
+        res = self.client().post('/actors', json = json_create_actor)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -63,7 +63,7 @@ class AgencyTestCase(unittest.TestCase):
             'age' : 41
         } 
 
-        res = self.client().post('/actors', json = json_create_actor_without_name, headers = casting_director_auth_header)
+        res = self.client().post('/actors', json = json_create_actor_without_name)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -71,7 +71,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'no name provided.')
 
     def test_get_all_actors(self):
-        res = self.client().get('/actors?page=1', headers = casting_assistant_auth_header)
+        res = self.client().get('/actors?page=1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -87,7 +87,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
     def test_error_404_get_actors(self):
-        res = self.client().get('/actors?page=14877', headers = casting_assistant_auth_header)
+        res = self.client().get('/actors?page=14877')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
@@ -98,7 +98,7 @@ class AgencyTestCase(unittest.TestCase):
         json_edit_actor_with_new_age = {
             'age' : 30
         } 
-        res = self.client().patch('/actors/1', json = json_edit_actor_with_new_age, headers = casting_director_auth_header)
+        res = self.client().patch('/actors/1', json = json_edit_actor_with_new_age)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -108,7 +108,7 @@ class AgencyTestCase(unittest.TestCase):
 
     def test_error_400_edit_actor(self):
 
-            res = self.client().patch('/actors/89749', headers = casting_director_auth_header)
+            res = self.client().patch('/actors/89749')
             data = json.loads(res.data)
 
             self.assertEqual(res.status_code, 400)
@@ -119,7 +119,7 @@ class AgencyTestCase(unittest.TestCase):
         json_edit_actor_with_new_age = {
             'age' : 30
         } 
-        res = self.client().patch('/actors/6468', json = json_edit_actor_with_new_age, headers = casting_director_auth_header)
+        res = self.client().patch('/actors/6468', json = json_edit_actor_with_new_age)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
@@ -136,7 +136,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
     def test_error_403_delete_actor(self):
-        res = self.client().delete('/actors/1', headers = casting_assistant_auth_header)
+        res = self.client().delete('/actors/1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 403)
@@ -144,7 +144,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Permission not found.')
 
     def test_delete_actor(self):
-        res = self.client().delete('/actors/1', headers = casting_director_auth_header)
+        res = self.client().delete('/actors/1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -152,7 +152,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['deleted'], '1')
 
     def test_error_404_delete_actor(self):
-        res = self.client().delete('/actors/14654', headers = casting_director_auth_header)
+        res = self.client().delete('/actors/14654')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
@@ -165,7 +165,7 @@ class AgencyTestCase(unittest.TestCase):
             'release_date' : date.today()
         } 
 
-        res = self.client().post('/movies', json = json_create_movie, headers = executive_producer_auth_header)
+        res = self.client().post('/movies', json = json_create_movie)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -177,7 +177,7 @@ class AgencyTestCase(unittest.TestCase):
             'release_date' : date.today()
         } 
 
-        res = self.client().post('/movies', json = json_create_movie_without_name, headers = executive_producer_auth_header)
+        res = self.client().post('/movies', json = json_create_movie_without_name)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -185,7 +185,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'no title provided.')
 
     def test_get_all_movies(self):
-        res = self.client().get('/movies?page=1', headers = casting_assistant_auth_header)
+        res = self.client().get('/movies?page=1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -201,7 +201,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
     def test_error_404_get_movies(self):
-        res = self.client().get('/movies?page=14444', headers = casting_assistant_auth_header)
+        res = self.client().get('/movies?page=14444')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
@@ -212,7 +212,7 @@ class AgencyTestCase(unittest.TestCase):
         json_edit_movie = {
             'release_date' : date.today()
         } 
-        res = self.client().patch('/movies/1', json = json_edit_movie, headers = executive_producer_auth_header)
+        res = self.client().patch('/movies/1', json = json_edit_movie)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -220,7 +220,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertTrue(len(data['movie']) > 0)
 
     def test_error_400_edit_movie(self):
-        res = self.client().patch('/movies/1', headers = executive_producer_auth_header)
+        res = self.client().patch('/movies/1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 400)
@@ -231,7 +231,7 @@ class AgencyTestCase(unittest.TestCase):
         json_edit_movie = {
             'release_date' : date.today()
         } 
-        res = self.client().patch('/movies/123412', json = json_edit_movie, headers = executive_producer_auth_header)
+        res = self.client().patch('/movies/123412', json = json_edit_movie)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
@@ -247,7 +247,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
     def test_error_403_delete_movie(self):
-        res = self.client().delete('/movies/1', headers = casting_assistant_auth_header)
+        res = self.client().delete('/movies/1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 403)
@@ -255,7 +255,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Permission not found.')
 
     def test_delete_movie(self):
-        res = self.client().delete('/movies/1', headers = executive_producer_auth_header)
+        res = self.client().delete('/movies/1')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -263,7 +263,7 @@ class AgencyTestCase(unittest.TestCase):
         self.assertEqual(data['deleted'], '1')
 
     def test_error_404_delete_movie(self):
-        res = self.client().delete('/movies/12454', headers = executive_producer_auth_header) 
+        res = self.client().delete('/movies/12454') 
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
